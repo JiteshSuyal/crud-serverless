@@ -1,0 +1,31 @@
+service: crud-serverless
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  # memorySize: 128
+  # timeout: 10
+  stage: dev
+  region: ap-south-1
+  cors: true
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: /user/create
+          method: POST
+      - http:
+          path: /user/read
+          method: GET
+      - http:
+          path: /user/del
+          method: DELETE
+      - http:
+          path: /user/update
+          method: PUT
